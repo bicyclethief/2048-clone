@@ -4,6 +4,7 @@
 - always simulate a "left" move
 - rotate and transpose board as necessary to convert up, down, right move into a
   left move 
+- remove zeros or empty squares, then pad them on the end to fill out the row
 - Cell class
   - attributes:
     - hasDoubled
