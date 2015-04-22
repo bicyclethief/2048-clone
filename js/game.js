@@ -3,10 +3,10 @@ var Game = function(position) {
   this.board = null;
 
   if (position) {
-    this.createBoard();
+    this.setupBoard(position);
   }
   else {
-    this.setupBoard(position);
+    this.createBoard();
   }
 };
 
@@ -16,3 +16,14 @@ Game.prototype.createBoard = function() {
 
 Game.prototype.setupBoard = function(position) {
 };
+
+Game.prototype.toString = function() {
+  return this.board.map(function(row){
+    return row.join(' ') + "\n";
+  }).join('');
+};
+
+
+// var game = new Game();
+// console.log(game.toString());
+
