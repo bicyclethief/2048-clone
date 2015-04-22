@@ -15,6 +15,11 @@ Game.prototype.createBoard = function() {
 };
 
 Game.prototype.setupBoard = function(position) {
+  this.board = [];
+  integerArray = position.split(' ').map(function(elem) {return parseInt(elem, 10);});
+  for (var i = 0; i < integerArray.length; i+=4) {
+    this.board.push(integerArray.slice(i, i+4));
+  }
 };
 
 Game.prototype.toString = function() {
@@ -24,6 +29,6 @@ Game.prototype.toString = function() {
 };
 
 
-// var game = new Game();
+// var game = new Game("0 0 0 1 2 0 0 0 0 2 0 0 0 0 0 4");
 // console.log(game.toString());
 
