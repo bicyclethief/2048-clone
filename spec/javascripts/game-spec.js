@@ -5,7 +5,7 @@ describe("Game", function(){
     expect(game).toBeDefined();
   });
 
-  it('should create an empty board with 2 spawned tiles', function() {
+  it('should create an empty board with 2 randomly spawned tiles', function() {
     var game = new Game();
     var flatBoard = game.toString().trim().replace(/\n/g, ' ').split(' ').map(function(elem) {return parseInt(elem, 10);});
 
