@@ -45,10 +45,7 @@ Game.prototype.spawnNewTiles = function(num) {
 };
 
 Game.prototype.twoOrFour = function() {
-  if (_.random(1, 10) === 1)
-    return 4;
-  else
-    return 2;
+  return (_.random(1, 10) === 1) ? 4 : 2;
 };
 
 
