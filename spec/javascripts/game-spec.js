@@ -25,6 +25,9 @@ describe("Game", function(){
     var game = new Game("0 0 0 1 2 0 0 0 0 2 0 0 0 0 0 4");
     expect(game.toString()).toEqual("0 0 0 1\n2 0 0 0\n0 2 0 0\n0 0 0 4\n");
   });
+});
+
+describe('Game#move("left")', function() {
 
   it('should move no tiles to the left', function() {
     var game = new Game("2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
@@ -43,6 +46,4 @@ describe("Game", function(){
     game.move("left");
     expect(game.toString()).toEqual("2 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 0\n");
   });
-
-
 });
