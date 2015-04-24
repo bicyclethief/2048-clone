@@ -25,7 +25,7 @@ var Row = function(row) {
 };
 
 Row.prototype.moveLeft = function() {
-  var leftOvers = this.removeZeros(this.row);
+  var leftOvers = removeZeros(this.row);
   var cells = leftOvers.map(function(digit) {
     return new Cell(digit);
   });
@@ -42,28 +42,9 @@ Row.prototype.moveLeft = function() {
   }
 
   arrayToPad = this.cellsToArray(cells);
+  arrayToPad = removeZeros(arrayToPad);
 
-  console.log(arrayToPad);
-
-  arrayToPad = this.removeZeros(arrayToPad);
-
-  console.log(arrayToPad);
-
-  return this.padArray(arrayToPad, 4, 0);
-};
-
-Row.prototype.removeZeros = function(arrayToTrim) {
-  return arrayToTrim.filter(function(num) {
-    return (num !== 0);
-  });
-};
-
-Row.prototype.padArray = function(arrayToPad, maxLength, padding) {
-  var paddedArray = arrayToPad;
-  while (paddedArray.length < maxLength) {
-    paddedArray.push(padding);
-  }
-  return paddedArray;
+  return padArray(arrayToPad, 4, 0);
 };
 
 Row.prototype.cellsToArray = function(cells) {
@@ -72,7 +53,7 @@ Row.prototype.cellsToArray = function(cells) {
   });
 };
 
-var row = new Row([2, 2, 0, 0]);
-console.log(row.moveLeft());
+// var row = new Row([2, 2, 0, 0]);
+// console.log(row.moveLeft());
 
 
