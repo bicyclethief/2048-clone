@@ -9,13 +9,21 @@ var Row = function(row) {
 };
 
 Row.prototype.moveLeft = function() {
-  var leftOvers = this.removeZeros();
+  var leftOvers = this.row.removeZeros();
 };
 
-Row.prototype.removeZeros = function() {
+Row.prototype.removeZeros = function(arrayToTrim) {
   return this.row.filter(function(num) {
     return (num !== 0);
   });
+};
+
+Row.prototype.padArray = function(arrayToPad, maxLength, padding) {
+  var paddedArray = arrayToPad;
+  while (paddedArray.length < maxLength) {
+    paddedArray.push(padding);
+  }
+  return paddedArray;
 };
 
 
