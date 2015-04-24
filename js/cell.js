@@ -4,22 +4,56 @@ var Cell = function(value) {
   this.hasDoubled = false;
 };
 
+Cell.prototype.equal = function(cell) {
+  return (this.value == cell.value);
+};
+
+Cell.prototype.doubleCell = function() {
+  this.value *= 2;
+};
+
+Cell.prototype.emptyCell = function() {
+  this.value = 0;
+};
+
+Cell.prototype.setDoubled = function() {
+  hasDoubled = true;
+};
+
 var Row = function(row) {
   this.row = row;
 };
 
 Row.prototype.moveLeft = function() {
-  var leftOvers = this.removeZeros();
+  var leftOvers = this.removeZeros(this.row);
   var cells = leftOvers.map(function(digit) {
     return new Cell(digit);
   });
 
+  for (var i = 1; i < cells.length; i++) {
+    previousCell = cells[i-1];
+    currentCell = cells[i];
+    if (!previousCell.hasDoubled && previousCell.equal(currentCell)) {
+      previousCell.doubleCell();
+      previousCell.setDoubled();
+      currentCell.emptyCell();
+      currentCell.setDoubled();
+    }
+  }
+
   arrayToPad = this.cellsToArray(cells);
+
+  console.log(arrayToPad);
+
+  arrayToPad = this.removeZeros(arrayToPad);
+
+  console.log(arrayToPad);
+
   return this.padArray(arrayToPad, 4, 0);
 };
 
 Row.prototype.removeZeros = function(arrayToTrim) {
-  return this.row.filter(function(num) {
+  return arrayToTrim.filter(function(num) {
     return (num !== 0);
   });
 };
@@ -37,5 +71,8 @@ Row.prototype.cellsToArray = function(cells) {
     return cell.value;
   });
 };
+
+var row = new Row([2, 2, 0, 0]);
+console.log(row.moveLeft());
 
 
