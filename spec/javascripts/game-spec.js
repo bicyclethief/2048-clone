@@ -47,3 +47,45 @@ describe('Game#move("left")', function() {
     expect(game.toString()).toEqual("2 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 0\n");
   });
 });
+
+describe('Game#move("right")', function() {
+
+  it('should move no tiles to the right', function() {
+    var game = new Game("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2");
+    game.move("right");
+    expect(game.toString()).toEqual("0 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 2\n");
+  });
+
+  it('should move the 2 tile one right', function() {
+    var game = new Game("0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0");
+    game.move("right");
+    expect(game.toString()).toEqual("0 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 2\n");
+  });
+
+  it('should move the 2 tile all the way right to the end', function() {
+    var game = new Game("0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0");
+    game.move("right");
+    expect(game.toString()).toEqual("0 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 2\n");
+  });
+});
+
+describe('Game#move("up")', function() {
+
+  it('should move no tiles to up', function() {
+    var game = new Game("2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
+    game.move("up");
+    expect(game.toString()).toEqual("2 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 0\n");
+  });
+
+  it('should move the 2 tile one up', function() {
+    var game = new Game("0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0");
+    game.move("up");
+    expect(game.toString()).toEqual("2 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 0\n");
+  });
+
+  it('should move the 2 tile all the way up to the end', function() {
+    var game = new Game("0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0");
+    game.move("up");
+    expect(game.toString()).toEqual("2 0 0 0\n0 0 0 0\n0 0 0 0\n0 0 0 0\n");
+  });
+});
