@@ -1,5 +1,5 @@
 
-var direction = {
+var Direction = {
   UP: "up",
   DOWN: "down",
   LEFT: "left",
@@ -20,13 +20,21 @@ var Game = function(position) {
 
 Game.prototype.move = function(direction) {
   switch(direction) {
-    case direction.UP:
+    case Direction.UP:
+      // rotate -90
     break;
-    case direction.DOWN:
+    case Direction.DOWN:
+      // rotate 90
     break;
-    case direction.RIGHT:
+    case Direction.RIGHT:
+      // rotate 180
     break;
-    case direction.LEFT:
+    case Direction.LEFT:
+      var board = this.board;
+      this.board.forEach(function(rowArray, index) {
+        row = new Row(rowArray);
+        board[index] = row.moveLeft();
+      });
     break;
     default:
   }
@@ -68,7 +76,8 @@ Game.prototype.twoOrFour = function() {
   return (_.random(1, 10) === 1) ? 4 : 2;
 };
 
-
-// var game = new Game();
+// var game = new Game("0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
+// console.log(game.toString());
+// game.move("left");
 // console.log(game.toString());
 
