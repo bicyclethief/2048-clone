@@ -21,6 +21,18 @@ function rotate90(array) {
   });
 }
 
+function rotate180(array) {
+  var rotated = rotate90(array);
+  return rotate90(rotated);
+}
+
+function rotateCounter90(array) {
+  var reversed = array.map(function(row) {
+    return row.reverse();
+  });
+  return transpose(reversed);
+}
+
 function transpose(a) {
   return a[0].map(function (_, c) { return a.map(function (r) { return r[c]; }); });
 }
