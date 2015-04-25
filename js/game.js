@@ -22,22 +22,35 @@ Game.prototype.move = function(direction) {
   switch(direction) {
     case Direction.UP:
       // rotate -90
+      this.board = rotateCounter90(this.board);
+      this.moveLeft();
+      this.board = rotate90(this.board);
     break;
     case Direction.DOWN:
       // rotate 90
+      this.board = rotate90(this.board);
+      this.moveLeft();
+      this.board = rotateCounter90(this.board);
     break;
     case Direction.RIGHT:
       // rotate 180
+      this.board = rotate180(this.board);
+      this.moveLeft();
+      this.board = rotate180(this.board);
     break;
     case Direction.LEFT:
-      var board = this.board;
-      this.board.forEach(function(rowArray, index) {
-        row = new Row(rowArray);
-        board[index] = row.moveLeft();
-      });
+      this.moveLeft();
     break;
     default:
   }
+};
+
+Game.prototype.moveLeft = function() {
+  var board = this.board;
+  this.board.forEach(function(rowArray, index) {
+    row = new Row(rowArray);
+    board[index] = row.moveLeft();
+  });
 };
 
 Game.prototype.createBoard = function() {
