@@ -19,3 +19,11 @@ describe('rotate90', function() {
     expect(game.toString()).toEqual("1 1 1 1\n0 0 0 0\n0 0 0 0\n0 0 0 0\n");
   });
 });
+
+describe('rotateCounter90', function() {
+  it('should rotate an array 90 degrees counter-clockwise', function() {
+    var game = new Game("1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0");
+    game.board = rotateCounter90(game.board);
+    expect(game.toString()).toEqual("1 0 0 0\n1 0 0 0\n1 0 0 0\n1 0 0 0\n");
+  });
+});
