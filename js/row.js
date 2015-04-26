@@ -15,10 +15,13 @@ Row.prototype.moveLeft = function() {
     currentCell = cells[i];
     if (!previousCell.hasDoubled && previousCell.equal(currentCell)) {
       previousCell.doubleCell();
-      this.game.addScore(previousCell.value);
       previousCell.setDoubled();
       currentCell.emptyCell();
       currentCell.setDoubled();
+
+      if (this.game) {
+        this.game.addScore(previousCell.value);
+      }
     }
   }
 
