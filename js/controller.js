@@ -15,38 +15,18 @@ Controller.prototype.unbindAll = function() {
   });
 };
 
-Controller.prototype._moveUp = function() {
-  this.game.move('up');
-  console.log(this.game.toString());
-  if (this.game.isWon) {
-    alert("won!");
-    this.unbindAll();
-  }
-};
+function makeCallback(direction) {
+  return function() {
+    this.game.move(direction);
+    console.log(this.game.toString());
+    if (this.game.isWon) {
+      alert("You won!");
+      this.unbindAll();
+    }
+  };
+}
 
-Controller.prototype._moveDown = function() {
-  this.game.move('down');
-  console.log(this.game.toString());
-  if (this.game.isWon) {
-    alert("won!");
-    this.unbindAll();
-  }
-};
-
-Controller.prototype._moveRight = function() {
-  this.game.move('right');
-  console.log(this.game.toString());
-  if (this.game.isWon) {
-    alert("won!");
-    this.unbindAll();
-  }
-};
-
-Controller.prototype._moveLeft = function() {
-  this.game.move('left');
-  console.log(this.game.toString());
-  if (this.game.isWon) {
-    alert("won!");
-    this.unbindAll();
-  }
-};
+Controller.prototype._moveUp = makeCallback('up');
+Controller.prototype._moveDown = makeCallback('down');
+Controller.prototype._moveRight = makeCallback('right');
+Controller.prototype._moveLeft = makeCallback('left');
