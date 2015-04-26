@@ -24,19 +24,16 @@ var Game = function(position) {
 Game.prototype.move = function(direction) {
   switch(direction) {
     case Direction.UP:
-      // rotate -90
       this.board = rotateCounter90(this.board);
       this.moveLeft();
       this.board = rotate90(this.board);
     break;
     case Direction.DOWN:
-      // rotate 90
       this.board = rotate90(this.board);
       this.moveLeft();
       this.board = rotateCounter90(this.board);
     break;
     case Direction.RIGHT:
-      // rotate 180
       this.board = rotate180(this.board);
       this.moveLeft();
       this.board = rotate180(this.board);
@@ -44,7 +41,6 @@ Game.prototype.move = function(direction) {
     case Direction.LEFT:
       this.moveLeft();
     break;
-    default:
   }
 
   this.checkWin();
@@ -128,3 +124,4 @@ Game.prototype.toHTML = function() {
 
   return "<div class='row text-center'><div class='col-md-12'><div class='game-score'>Score: " + this.score + "</div></div>" + boardInside;
 };
+
