@@ -8,6 +8,8 @@ var Direction = {
 
 var Game = function(position) {
   this.board = null;
+  this.winTile = 8;
+  this.isWon = false;
 
   if (position) {
     this.setupBoard(position);
@@ -42,6 +44,12 @@ Game.prototype.move = function(direction) {
       this.moveLeft();
     break;
     default:
+  }
+
+  this.checkWin();
+
+  if (!this.isWon) {
+    this.spawnNewTiles(1);
   }
 };
 
@@ -89,8 +97,10 @@ Game.prototype.twoOrFour = function() {
   return (_.random(1, 10) === 1) ? 4 : 2;
 };
 
-// var game = new Game("0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
-// console.log(game.toString());
-// game.move("left");
-// console.log(game.toString());
+Game.prototype.checkWin = function() {
+  var flatBoard = _.flatten(this.board);
+  if (_.indexOf(flatBoard, this.winTile) !== -1) {
+    this.isWon = true;
+  }
+};
 
