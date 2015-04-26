@@ -8,8 +8,9 @@ var Direction = {
 
 var Game = function(position) {
   this.board = null;
-  this.winTile = 8;
+  this.winTile = 256;
   this.isWon = false;
+  this.score = 0;
 
   if (position) {
     this.setupBoard(position);
@@ -54,10 +55,10 @@ Game.prototype.move = function(direction) {
 };
 
 Game.prototype.moveLeft = function() {
-  var board = this.board;
+  var game = this;
   this.board.forEach(function(rowArray, index) {
-    row = new Row(rowArray);
-    board[index] = row.moveLeft();
+    row = new Row(rowArray, game);
+    game.board[index] = row.moveLeft();
   });
 };
 
@@ -71,12 +72,6 @@ Game.prototype.setupBoard = function(position) {
   for (var i = 0; i < integerArray.length; i+=4) {
     this.board.push(integerArray.slice(i, i+4));
   }
-};
-
-Game.prototype.toString = function() {
-  return this.board.map(function(row){
-    return row.join(' ') + "\n";
-  }).join('');
 };
 
 Game.prototype.spawnNewTiles = function(num) {
@@ -104,3 +99,32 @@ Game.prototype.checkWin = function() {
   }
 };
 
+Game.prototype.addScore = function(points) {
+  this.score += points;
+};
+
+Game.prototype.toString = function() {
+  return this.board.map(function(row){
+    return row.join(' ') + "\n";
+  }).join('');
+};
+
+Game.prototype.toHTML = function() {
+  var boardInside = this.board.map(function(row) {
+    var rowInside = row.map(function(cell) {
+      var tileClass, tileValue;
+      if (cell === 0) {
+        tileClass = "tile-empty";
+        tileValue = "";
+      }
+      else {
+        tileClass = "tile-numbered";
+        tileValue = cell;
+      }
+      return "<div class='col-md-3 tile " + tileClass + "'>" + tileValue + "</div>";
+    }).join('\n');
+    return "<div class='row text-center'>" + rowInside + "</div>";
+  }).join('');
+
+  return "<div class='row text-center'><div class='col-md-12'><div class='game-score'>Score: " + this.score + "</div></div>" + boardInside;
+};

@@ -20,8 +20,9 @@ Cell.prototype.setDoubled = function() {
   hasDoubled = true;
 };
 
-var Row = function(row) {
+var Row = function(row, game) {
   this.row = row;
+  this.game = game;
 };
 
 Row.prototype.moveLeft = function() {
@@ -35,6 +36,7 @@ Row.prototype.moveLeft = function() {
     currentCell = cells[i];
     if (!previousCell.hasDoubled && previousCell.equal(currentCell)) {
       previousCell.doubleCell();
+      this.game.addScore(previousCell.value);
       previousCell.setDoubled();
       currentCell.emptyCell();
       currentCell.setDoubled();

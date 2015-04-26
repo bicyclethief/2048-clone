@@ -18,7 +18,7 @@ body {
   width: 550px;
 }
 
-.game-board {
+#game-board {
   /*background: red;*/
   border-radius: 3px;
   margin: 0 auto;

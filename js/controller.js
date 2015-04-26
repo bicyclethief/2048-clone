@@ -1,7 +1,8 @@
 
 var Controller = function() {
   this.game = new Game();
-  console.log(this.game.toString());
+  // console.log(this.game.toString());
+  $('#game-board').html(this.game.toHTML());
 
   Mousetrap.bind('up', this._moveUp.bind(this));
   Mousetrap.bind('down', this._moveDown.bind(this));
@@ -18,7 +19,8 @@ Controller.prototype.unbindAll = function() {
 function makeCallback(direction) {
   return function() {
     this.game.move(direction);
-    console.log(this.game.toString());
+    $('#game-board').html(this.game.toHTML());
+    // console.log(this.game.toString());
     if (this.game.isWon) {
       alert("You won!");
       this.unbindAll();
