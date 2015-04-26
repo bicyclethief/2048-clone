@@ -1,0 +1,46 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #D5DED9;
+}
+
+.game-score {
+  color: #7A6A53;
+}
+
+.game-board-container {
+  color: #A7DBD8;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  margin: 100px auto;
+  width: 550px;
+}
+
+#game-board {
+  border-radius: 3px;
+  margin: 0 auto;
+  width: 500px;
+}
+
+.row {
+  margin: 0 auto;
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+  margin: 8px;
+  line-height: 100px;
+}
+
+.tile-empty {
+  background: rgba(148,140,117, 0.35);
+}
+
+.tile-numbered {
+  background: #948C75;
+}
+
