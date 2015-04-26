@@ -1,13 +1,16 @@
 
 var Controller = function() {
   this.game = new Game();
-  // console.log(this.game.toString());
-  $('#game-board').html(this.game.toHTML());
+  this.displayBoard();
 
   Mousetrap.bind('up', this._moveUp.bind(this));
   Mousetrap.bind('down', this._moveDown.bind(this));
   Mousetrap.bind('right', this._moveRight.bind(this));
   Mousetrap.bind('left', this._moveLeft.bind(this));
+};
+
+Controller.prototype.displayBoard = function() {
+  $('#game-board').html(this.game.toHTML());
 };
 
 Controller.prototype.unbindAll = function() {
@@ -19,8 +22,7 @@ Controller.prototype.unbindAll = function() {
 function makeCallback(direction) {
   return function() {
     this.game.move(direction);
-    $('#game-board').html(this.game.toHTML());
-    // console.log(this.game.toString());
+    this.displayBoard();
     if (this.game.isWon) {
       alert("You won!");
       this.unbindAll();
