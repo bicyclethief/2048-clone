@@ -21,7 +21,7 @@ var Game = function(position) {
   }
 };
 
-Game.prototype.move = function(direction) {
+Game.prototype.move = function(direction, noSpawn) {
   switch(direction) {
     case Direction.UP:
       this.board = rotateCounter90(this.board);
@@ -45,7 +45,7 @@ Game.prototype.move = function(direction) {
 
   this.checkWin();
 
-  if (!this.isWon) {
+  if (!this.isWon && !noSpawn) {
     this.spawnNewTiles(1);
   }
 };
